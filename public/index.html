@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MAD-MAX · WhatsApp Bot</title>
+  
+  <!-- Meta Tags for SEO -->
+  <meta name="description" content="MAD-MAX - A powerful WhatsApp bot with advanced features, auto-replies, media tools, and security.">
+  <meta name="keywords" content="whatsapp bot, mad-max, automation, whatsapp tools">
+  <meta name="author" content="MAD-MAX">
+  
+  <!-- Fonts & Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Dynamic Background Elements -->
+  <div class="particles" id="particles"></div>
+  <div class="gradient-orb"></div>
+  <div class="gradient-orb secondary"></div>
+
+  <!-- ==================== CHANNEL MODAL ==================== -->
+  <div id="channelModal" class="modal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <h2 id="modalTitle">
+          <i class="fas fa-bell" aria-hidden="true"></i> 
+          Important Notice
+        </h2>
+        <button class="modal-close" id="modalClose" aria-label="Close modal">&times;</button>
+      </div>
+      
+      <div class="modal-body">
+        <div class="modal-icon" aria-hidden="true">
+          <i class="fas fa-users"></i>
+        </div>
+        
+        <p class="modal-message">
+          To use MAD-MAX, you must follow our official channels for updates and support.
+        </p>
+        
+        <div class="channel-grid">
+          <!-- WhatsApp Channel -->
+          <a href="https://whatsapp.com/channel/0029Vb0Gf5cDzgT3OIIc4C0b" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="channel-card whatsapp">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+            <div class="channel-info">
+              <span class="channel-name">WhatsApp Channel</span>
+              <span class="channel-action">Follow →</span>
+            </div>
+          </a>
+          
+          <!-- Telegram Channel -->
+          <a href="https://t.me/MAD-MAX_dominion_tech" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="channel-card telegram">
+            <i class="fab fa-telegram" aria-hidden="true"></i>
+            <div class="channel-info">
+              <span class="channel-name">Telegram Channel</span>
+              <span class="channel-action">Join →</span>
+            </div>
+          </a>
+          
+          <!-- YouTube Channel -->
+          <a href="https://youtube.com/@MAD-MAXdominiontech" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="channel-card youtube">
+            <i class="fab fa-youtube" aria-hidden="true"></i>
+            <div class="channel-info">
+              <span class="channel-name">YouTube Channel</span>
+              <span class="channel-action">Subscribe →</span>
+            </div>
+          </a>
+          
+          <!-- Telegram Group -->
+          <a href="https://t.me/MAD-MAX_hacking_group" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="channel-card telegram-group">
+            <i class="fab fa-telegram" aria-hidden="true"></i>
+            <div class="channel-info">
+              <span class="channel-name">Telegram Group</span>
+              <span class="channel-action">Join →</span>
+            </div>
+          </a>
+        </div>
+        
+        <div class="modal-footer">
+          <button class="btn btn-primary modal-btn" id="confirmFollow">
+            <i class="fas fa-check-circle" aria-hidden="true"></i>
+            I've Followed All Channels
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== NAVIGATION ==================== -->
+  <nav id="nav" class="navbar">
+    <div class="nav-container">
+      <div class="brand">
+        <div class="logo pulse" aria-label="MAD-MAX Logo">M</div>
+        <div class="brand-text">
+          <span class="brand-name">MAD-MAX</span>
+          <span class="brand-tagline">WhatsApp Bot</span>
+        </div>
+      </div>
+      
+      <!-- Navigation Links -->
+      <div class="nav-links" id="navLinks">
+        <a href="#features" class="nav-link">
+          <i class="fas fa-star" aria-hidden="true"></i>
+          <span>Features</span>
+        </a>
+        <a href="#connect" class="nav-link">
+          <i class="fas fa-link" aria-hidden="true"></i>
+          <span>Connect</span>
+        </a>
+        <a href="#links" class="nav-link">
+          <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+          <span>Links</span>
+        </a>
+      </div>
+      
+      <!-- Mobile Menu Button -->
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <i class="fas fa-bars" aria-hidden="true"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ==================== HEADER / HERO ==================== -->
+  <header class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-pulse"></span>
+        v2.0 · Ready to Connect
+      </div>
+      
+      <h1 class="hero-title">
+        <span class="logo-large pulse">M</span>
+        <span class="gradient-text">MAD-MAX</span>
+      </h1>
+      
+      <p class="hero-subtitle">
+        A modern WhatsApp bot with powerful features, crafted by <strong>MAD-MAX</strong>
+      </p>
+
+      <!-- Stats Cards -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-bolt" aria-hidden="true"></i>
+          </div>
+          <div class="stat-content">
+            <div class="stat-value" id="activeSockets">0</div>
+            <div class="stat-label">Active Connections</div>
+          </div>
+          <div class="stat-glow"></div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-globe" aria-hidden="true"></i>
+          </div>
+          <div class="stat-content">
+            <div class="stat-value" id="totalUsers">0</div>
+            <div class="stat-label">Total Users</div>
+          </div>
+          <div class="stat-glow"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="main-content">
+    <!-- Features Section -->
+    <section id="features" class="section-card">
+      <div class="section-header">
+        <h2>
+          <i class="fas fa-crown" aria-hidden="true"></i>
+          Premium Features
+        </h2>
+        <p class="section-description">Everything you need to supercharge your WhatsApp</p>
+      </div>
+      
+      <div class="features-grid">
+        <!-- Auto Replies -->
+        <article class="feature-card">
+          <div class="feature-icon-wrapper">
+            <i class="fas fa-reply-all feature-icon"></i>
+          </div>
+          <h3>Smart Auto-Replies</h3>
+          <p>Intelligent automated responses based on customizable triggers and patterns.</p>
+          <div class="feature-tags">
+            <span class="tag">AI-Powered</span>
+            <span class="tag">Customizable</span>
+          </div>
+        </article>
+        
+        <!-- Media Tools -->
+        <article class="feature-card">
+          <div class="feature-icon-wrapper">
+            <i class="fas fa-film feature-icon"></i>
+          </div>
+          <h3>Advanced Media Tools</h3>
+          <p>Download, convert, and manage media files from various platforms with ease.</p>
+          <div class="feature-tags">
+            <span class="tag">4K Support</span>
+            <span class="tag">Fast Processing</span>
+          </div>
+        </article>
+        
+        <!-- Commands System -->
+        <article class="feature-card">
+          <div class="feature-icon-wrapper">
+            <i class="fas fa-puzzle-piece feature-icon"></i>
+          </div>
+          <h3>Modular Commands</h3>
+          <p>Extend functionality with custom plugins and scripts. Easy to create and share.</p>
+          <div class="feature-tags">
+            <span class="tag">100+ Commands</span>
+            <span class="tag">Customizable</span>
+          </div>
+        </article>
+        
+        <!-- Security -->
+        <article class="feature-card">
+          <div class="feature-icon-wrapper">
+            <i class="fas fa-shield-halved feature-icon"></i>
+          </div>
+          <h3>Enterprise Security</h3>
+          <p>Built-in protection for your privacy and data with end-to-end encryption.</p>
+          <div class="feature-tags">
+            <span class="tag">Encrypted</span>
+            <span class="tag">Private</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Connect Section -->
+    <section id="connect" class="section-card highlight">
+      <div class="section-header">
+        <h2>
+          <i class="fas fa-link" aria-hidden="true"></i>
+          Connect WhatsApp
+        </h2>
+        <p class="section-description">Link your WhatsApp account in 5 simple steps</p>
+      </div>
+      
+      <div class="connect-container">
+        <!-- Instructions Timeline -->
+        <div class="instructions-timeline">
+          <div class="timeline-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h4>Enter Number</h4>
+              <p>Add your WhatsApp number with country code</p>
+            </div>
+          </div>
+          
+          <div class="timeline-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h4>Get Code</h4>
+              <p>Click "Request Pairing Code" to receive 8-digit code</p>
+            </div>
+          </div>
+          
+          <div class="timeline-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h4>Open WhatsApp</h4>
+              <p>Settings → Linked Devices → Link a Device</p>
+            </div>
+          </div>
+          
+          <div class="timeline-step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h4>Enter Code</h4>
+              <p>Paste the 8-digit code when prompted</p>
+            </div>
+          </div>
+          
+          <div class="timeline-step">
+            <div class="step-number">5</div>
+            <div class="step-content">
+              <h4>Enjoy!</h4>
+              <p>Your bot is now connected and ready</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pairing Form -->
+        <div class="pairing-card">
+          <div class="input-wrapper">
+            <div class="input-group">
+              <i class="fas fa-phone-alt input-icon"></i>
+              <input 
+                type="tel" 
+                id="phone" 
+                placeholder="2348153103731" 
+                pattern="[0-9]+"
+                title="Please enter only numbers with country code"
+                required
+              />
+              <span class="input-hint">Country code + number (no +, spaces)</span>
+            </div>
+            
+            <button class="btn btn-primary btn-block" id="requestPairing">
+              <i class="fas fa-key" aria-hidden="true"></i>
+              Request Pairing Code
+            </button>
+          </div>
+          
+          <!-- Status Message Container -->
+          <div id="status" class="status-message" role="alert"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Links Section -->
+    <section id="links" class="section-card">
+      <div class="section-header">
+        <h2>
+          <i class="fas fa-share-alt" aria-hidden="true"></i>
+          Community Links
+        </h2>
+        <p class="section-description">Join our community for updates and support</p>
+      </div>
+      
+      <div class="links-grid">
+        <!-- WhatsApp Channel -->
+        <a href="https://whatsapp.com/channel/0029Vb0Gf5cDzgT3OIIc4C0b" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="link-card whatsapp">
+          <div class="link-icon">
+            <i class="fab fa-whatsapp"></i>
+          </div>
+          <div class="link-content">
+            <h3>WhatsApp Channel</h3>
+            <p>Get updates and announcements</p>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+        
+        <!-- Telegram Channel -->
+        <a href="https://t.me/MAD-MAX_dominion_tech" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="link-card telegram">
+          <div class="link-icon">
+            <i class="fab fa-telegram"></i>
+          </div>
+          <div class="link-content">
+            <h3>Telegram Channel</h3>
+            <p>News and releases</p>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+        
+        <!-- YouTube Channel -->
+        <a href="https://youtube.com/@MAD-MAXdominiontech" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="link-card youtube">
+          <div class="link-icon">
+            <i class="fab fa-youtube"></i>
+          </div>
+          <div class="link-content">
+            <h3>YouTube Channel</h3>
+            <p>Tutorials and demos</p>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+        
+        <!-- Telegram Group -->
+        <a href="https://t.me/MAD-MAX_hacking_group" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="link-card telegram-group">
+          <div class="link-icon">
+            <i class="fab fa-telegram"></i>
+          </div>
+          <div class="link-content">
+            <h3>Telegram Group</h3>
+            <p>Community discussions</p>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo">M</div>
+        <span>MAD-MAX</span>
+      </div>
+      
+      <div class="footer-links">
+        <a href="#features">Features</a>
+        <a href="#connect">Connect</a>
+        <a href="#links">Community</a>
+      </div>
+      
+      <div class="footer-copyright">
+        <p>© <span id="year">2026</span> MAD-MAX · All rights reserved</p>
+        <p class="footer-credit">Crafted with <i class="fas fa-heart" style="color: var(--primary);"></i> by MAD-MAX</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="scripts.js"></script>
+</body>
+</html>
